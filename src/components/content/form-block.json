@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_content_form_blocks",
+  "info": {
+    "displayName": "FormBlock",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "form_type": {
+      "type": "enumeration",
+      "enum": [
+        "Ex:",
+        "Workshop registration,",
+        "Feedback"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    }
+  }
+}

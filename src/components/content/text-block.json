@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_content_text_blocks",
+  "info": {
+    "displayName": "TextBlock",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "blocks"
+    }
+  }
+}
