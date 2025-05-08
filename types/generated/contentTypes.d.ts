@@ -423,6 +423,10 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     location: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    registrations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::registration.registration'
+    >;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -430,13 +434,13 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFormSubmissionFormSubmission
+export interface ApiRegistrationRegistration
   extends Struct.CollectionTypeSchema {
-  collectionName: 'form_submissions';
+  collectionName: 'registrations';
   info: {
-    displayName: 'Form Submission';
-    pluralName: 'form-submissions';
-    singularName: 'form-submission';
+    displayName: 'Registration';
+    pluralName: 'registrations';
+    singularName: 'registration';
   };
   options: {
     draftAndPublish: true;
@@ -446,20 +450,20 @@ export interface ApiFormSubmissionFormSubmission
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::form-submission.form-submission'
+      'api::registration.registration'
     > &
       Schema.Attribute.Private;
-    message: Schema.Attribute.Text;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     user: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToMany',
       'plugin::users-permissions.user'
     >;
   };
@@ -934,10 +938,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    form_submissions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::form-submission.form-submission'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -951,6 +951,10 @@ export interface PluginUsersPermissionsUser
       }>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    registration: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::registration.registration'
+    >;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
@@ -980,7 +984,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
       'api::event.event': ApiEventEvent;
-      'api::form-submission.form-submission': ApiFormSubmissionFormSubmission;
+      'api::registration.registration': ApiRegistrationRegistration;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registrations",
+  "info": {
+    "singularName": "registration",
+    "pluralName": "registrations",
+    "displayName": "Registration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "registrations"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "registration"
+    }
+  }
+}

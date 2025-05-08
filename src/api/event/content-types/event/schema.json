@@ -34,6 +34,12 @@
     },
     "form_enabled": {
       "type": "boolean"
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "event"
     }
   }
 }

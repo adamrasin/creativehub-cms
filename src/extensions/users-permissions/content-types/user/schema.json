@@ -65,11 +65,11 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "form_submissions": {
+    "registration": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::form-submission.form-submission",
-      "mappedBy": "user"
+      "relation": "manyToOne",
+      "target": "api::registration.registration",
+      "inversedBy": "user"
     }
   }
 }
